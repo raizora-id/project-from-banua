@@ -1,0 +1,114 @@
+---
+const pageData = [
+  {
+    title: "All pages",
+    sections: [
+      {
+        title: "Landing Pages",
+        links: [
+          { label: "Home", href: "/" },
+          { label: "About", href: "/about" },
+          { label: "404", href: "/infopages/404" },
+        ],
+      },
+      {
+        title: "Pricing",
+        links: [
+          { label: "Pricing table", href: "/pricing/featured-job-pricing" },
+          { label: "Paid job offer post", href: "/board/post-job" },
+          { label: "Free job offer post", href: "/board/post-job" },
+        ],
+      },
+      {
+        title: "Board",
+        links: [
+          { label: "Level", href: "/board/level" },
+          { label: "Location", href: "/board/location" },
+          { label: "Category", href: "/board/category" },
+        ],
+      },
+      {
+        title: "System",
+        links: [{ label: "Style Guide", href: "/system/style-guide" }],
+      },
+    ],
+  },
+  {
+    title: "Content collections",
+    sections: [
+      {
+        title: "Blog",
+        links: [
+          { label: "Blog", href: "/blog" },
+          { label: "Blog Post", href: "/posts/1" },
+          { label: "Tags index", href: "/tags" },
+          { label: "Tags category", href: "/tags/HTML" },
+          { label: "RSS", href: "/rss.xml" },
+        ],
+      },
+      {
+        title: "Board",
+        links: [{ label: "Job offer post", href: "/openjobs/1" }],
+      },
+      {
+        title: "Companies",
+        links: [
+          { label: "Home", href: "/board/all-companies" },
+          { label: "Details", href: "/companies/1" },
+        ],
+      },
+
+      {
+        title: "Info Pages",
+        links: [
+          { label: "Contact", href: "/contact" },
+          { label: "Terms Of use", href: "/infopages/terms" },
+          { label: "Privacy Policy", href: "/infopages/privacy" },
+        ],
+      },
+    ],
+  },
+];
+---
+
+<section>
+  <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+    <h2
+      class="text-slate-900 text-3xl font-normal tracking-tighter lg:text-4xl"
+    >
+      Overview
+    </h2>
+    <div class="mt-10 space-y-24">
+      {
+        pageData.map((page) => (
+          <div>
+            <h2 class="text-slate-900 text-3xl font-normal tracking-tighter">
+              {page.title}
+            </h2>
+            <div class="grid grid-cols-2 gap-12 lg:grid-cols-5 md:grid-cols-3">
+              {page.sections.map((section) => (
+                <div class="text-sm mt-10">
+                  <div class="flex flex-col justify-start">
+                    <p class="text-regent-900 font-medium lg:text-xl text-lg">
+                      {section.title}
+                    </p>
+                    {section.links.map((link, i) => (
+                      <a
+                        class="text-base hover:text-purple-500 text-slate-500 mt-2"
+                        title={link.label}
+                        aria-label={link.label}
+                        href={link.href}
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

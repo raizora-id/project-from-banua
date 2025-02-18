@@ -1,0 +1,170 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+import CompanyOpenJobs from "@/components/board/CompanyOpenJobs.astro";
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("companies");
+---
+
+<BaseLayout>
+  <section>
+    <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+      <div class="border-b border-slate-200 pb-12">
+        <div class="max-w-2xl md:inline-flex md:items-center gap-3">
+          <div class="h-12 w-12 flex-none">
+            <img
+              class="inset-0 h-full w-full rounded-full object-cover"
+              src={frontmatter.companyLogo.url}
+              alt={frontmatter.companyLogo.alt}
+            />
+          </div>
+          <h2
+            class="text-slate-900 text-3xl font-normal tracking-tight font-display lg:text-4xl mt-8 md:mt-0"
+          >
+            {frontmatter.company}
+          </h2>
+        </div>
+        <dl
+          class="mt-12 grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-y-16"
+        >
+          <div class="flex flex-col gap-y-3 border-l border-slate-200 pl-6">
+            <dt
+              class="text-base leading-7 text-slate-500 inline-flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-map-pin"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                <path
+                  d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
+                ></path>
+              </svg>Location
+            </dt>
+            <dd class="text-base font-semibold tracking-tight text-slate-900">
+              {frontmatter.location}
+            </dd>
+          </div>
+          <div class="flex flex-col gap-y-3 border-l border-slate-200 pl-6">
+            <dt
+              class="text-base leading-7 text-slate-500 inline-flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-user-bolt"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4c.267 0 .529 .026 .781 .076"
+                ></path>
+                <path d="M19 16l-2 3h4l-2 3"></path>
+              </svg>Employees
+            </dt>
+            <dd class="text-base font-semibold tracking-tight text-slate-900">
+              {frontmatter.employees}
+            </dd>
+          </div>
+          <div class="flex flex-col gap-y-3 border-l border-slate-200 pl-6">
+            <dt
+              class="text-base leading-7 text-slate-500 inline-flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-link"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M9 15l6 -6"></path>
+                <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"
+                ></path>
+                <path
+                  d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"
+                ></path>
+              </svg>
+              Link
+            </dt>
+            <dd class="text-base font-semibold tracking-tight text-slate-900">
+              <a href={frontmatter.link}
+                >Visit {frontmatter.company} &nbsp; &UpperRightArrow;</a
+              >
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+      <div
+        class="border-b border-gray-200 pb-5 grid gird-cols-1 lg:grid-cols-2 gap-2"
+      >
+        <h3 class="text-lg lg:text-xl font-semibold leading-6 text-slate-900">
+          {frontmatter.company} open jobs
+        </h3>
+        <p class="text-sm text-gray-500">
+          Unleash your potential with exclusive opportunities for developers,
+          designers, and marketers in the tech industry.
+        </p>
+      </div>
+      <ul class="divide-y divide-slate-100">
+        {
+          allPosts
+            .slice(0, 1)
+            .map((post) => (
+              <CompanyOpenJobs
+                url={"/openjobs/" + post.slug}
+                type={post.data.type}
+                salary={post.data.salary}
+                location={post.data.location}
+                company={post.data.company}
+                position={post.data.position}
+                companyLogo={post.data.companyLogo.url}
+                alt={post.data.company}
+              />
+            ))
+        }
+      </ul>
+    </div>
+    <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+      <div
+        class="border-b border-gray-200 pb-5 grid gird-cols-1 lg:grid-cols-2 gap-2"
+      >
+        <h3 class="text-lg lg:text-xl font-semibold leading-6 text-slate-900">
+          About {frontmatter.company}
+        </h3>
+        <p class="text-sm text-gray-500">
+          Unleashing creativity: empowering artists and designers worldwide
+        </p>
+      </div>
+      <div
+        class="prose-styles"
+      >
+        <slot />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

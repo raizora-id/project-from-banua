@@ -1,0 +1,70 @@
+---
+const jobOffers = [
+  {
+    id: 1,
+    title: "Post a featured job offer",
+    description:
+      "Boost your job listing ⏤ Gain maximum exposure by posting it as a featured opportunity",
+    link: "/pricing/featured-job-pricing",
+    linkText: "Get started",
+    linkTitle: "link to your page",
+    bgColorClass:
+      "bg-gradient-to-tr from-purple-700 via-purple-500 to-purple-300",
+    textColor: "text-white",
+    shadowClass: "shadow-slate-500/30",
+    hoverBgColor: "hover:bg-purple-50",
+    focusRingColor: "focus:ring-white",
+  },
+  {
+    id: 2,
+    title: "Post a free job offer",
+    description:
+      "Amplify your job listing ⏤ Increase visibility by posting it as a featured opportunity, free of charge",
+    link: "/board/post-job",
+    linkText: "Get started",
+    linkTitle: "your label",
+    bgColorClass: "bg-white",
+    textColor: "text-slate-900",
+    shadowClass: "shadow-slate-500/20",
+    hoverBgColor: "hover:bg-purple-800",
+    hoverTextColor: "hover:text-purple-100",
+    focusRingColor: "focus:ring-purple-500",
+  },
+];
+---
+
+<section>
+  <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+      {
+        jobOffers.map((offer) => (
+          <div
+            class={`relative border border-slate-200  rounded-3xl p-8 ${offer.bgColorClass} ${offer.shadowClass} overflow-hidden`}
+          >
+            <div class="relative w-full">
+              <p class={`text-lg font-medium ${offer.textColor}`}>
+                {offer.title}
+              </p>
+              <p
+                class={`text-base mt-4 ${offer.textColor === "text-white" ? "text-slate-200" : "text-slate-500"}`}
+              >
+                <span class={`font-medium ${offer.textColor} leading-6`}>
+                  {offer.description}
+                </span>
+              </p>
+              <div class="mt-6">
+                <a
+                  title={offer.linkTitle}
+                  href={offer.link}
+                  class={`inline-flex items-center w-full px-5 py-3 text-sm leading-4 ${offer.textColor === "text-white" ? "text-purple-500" : "text-purple-500"} ${offer.bgColorClass === "bg-white" ? "bg-purple-50" : "bg-white"} md:w-auto rounded-full ${offer.hoverBgColor} ${offer.hoverTextColor ? offer.hoverTextColor : ""} duration-200 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 ${offer.focusRingColor}`}
+                >
+                  {offer.linkText}
+                </a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

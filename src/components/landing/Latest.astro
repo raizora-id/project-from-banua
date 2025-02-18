@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("companies");
+import JobEntries from "../board/JobEntries.astro";
+---
+
+<section>
+  <div class="mx-auto px-8 md:px-32 py-12 max-w-6xl">
+    <div
+      class="border-b border-gray-200 pb-5 grid gird-cols-1 lg:grid-cols-2 gap-2"
+    >
+      <h3 class="text-lg lg:text-xl font-semibold leading-6 text-slate-900">
+        Latest jobs
+      </h3>
+      <p class="text-sm text-gray-500">
+        Stay updated with the newest job openings for developers, designers, and
+        marketers in the tech industry. Find your next career move and stay
+        ahead of the curve.
+      </p>
+    </div>
+
+    <ul class="divide-y divide-slate-100">
+      {
+        allPosts.map((post) => (
+          <JobEntries
+            url={"/companies/" + post.slug}
+            type={post.data.type}
+            salary={post.data.salary}
+            location={post.data.location}
+            company={post.data.company}
+            position={post.data.position}
+            companyLogo={post.data.companyLogo.url}
+            alt={post.data.company}
+          />
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+---
+const contactInfo = [
+  {
+    id: 1,
+    heading: "For general inquiries",
+    details: "support@raizora.com",
+    type: "email", // Additional field to specify the type (email or address)
+  },
+  {
+    id: 3,
+    heading: "For feedback",
+    details: "123 Main Street Anytown, USA 12345",
+    type: "address",
+  },
+];
+---
+
+<section>
+  <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+    <div class="lg:mx-auto lg:text-center max-w-xl">
+      <span
+        class="text-purple-500 text-sm leading-6 px-4 py-2 relative bg-white ring-1 ring-slate-200 rounded-full"
+        >Contact us</span
+      ><h2
+        class="text-slate-900 text-3xl text-balance font-normal tracking-tight font-display lg:text-4xl mt-8"
+      >
+        Your direct line for support, queries, and feedback
+      </h2>
+    </div>
+
+    <div
+      class="grid grid-cols-1 lg:grid-cols-3 mt-12 lg:mt-24 sm:grid-cols-2 gap-4 lg:text-center"
+    >
+      {
+        contactInfo.map((info) => (
+          <div class="border rounded-3xl border-slate-200 p-8 shadow-2xl shadow-slate-500/10">
+            <p class="text-lg font-medium text-slate-900">{info.heading}</p>
+            <p class="text-base mt-4 text-slate-500">{info.details}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

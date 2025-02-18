@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import EntriesOne from "@/components/entries/EntriesOne.astro";
+const allPosts = await getCollection("posts");
+---
+<BaseLayout>
+  <section>
+    <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+      <div class="max-w-xl">
+        <span
+          class="text-purple-500 text-sm leading-6 px-4 py-2 relative bg-white ring-1 ring-slate-200 rounded-full"
+          >Blog</span
+        ><h2
+          class="text-slate-900 text-3xl font-normal tracking-tight font-display lg:text-4xl mt-8">
+          Insights and strategies for success
+        </h2>
+        <p class="text-slate-500 text-base mt-4">
+          Unleashing your potential, overcoming challenges,
+          <span class="md:block">
+            and thriving in today's evolving workplace
+          </span>
+        </p>
+      </div>
+      <ul
+        class="grid grid-cols-1 mt-12 lg:mt-24 lg:grid-cols-3 sm:grid-cols-2 gap-x-3 gap-y-24 lg:gap-x-6">
+        {
+          allPosts
+            .slice()
+            .map((post) => (
+              <EntriesOne
+                url={"/posts/" + post.slug}
+                title={post.data.title}
+                description={post.data.description}
+                alt={post.data.title}
+                pubDate={post.data.pubDate.toString().slice(0, 10)}
+                author={post.data.author}
+                image={post.data.image.url}
+              />
+            ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

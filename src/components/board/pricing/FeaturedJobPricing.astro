@@ -1,0 +1,167 @@
+---
+const pricingPlans = [
+  {
+    name: "Basic",
+    price: "Free",
+    description:
+      "Ideal for startups and small businesses looking to post a single job opening.",
+    cardBgClass: "bg-white", // Keeping original card background color
+    descriptionColor: "text-zinc-500", // Keeping original description text color
+    features: [
+      "1 credit for featuring a single job opening",
+      "Job featured for 1 week",
+      "Job published for 2 months",
+      "1-day approval process",
+    ],
+    unavailableFeatures: [
+      "Raizora support inclusion",
+      "Verified company status",
+    ],
+  },
+  {
+    name: "Standard",
+    price: "99",
+    description:
+      "Designed for growing companies that need increased visibility and support.",
+    cardBgClass:
+      "bg-gradient-to-tr from-purple-700 via-purple-500 to-purple-300", // Reverting to the original color scheme
+    descriptionColor: "text-white", // Keeping original description text color
+    features: [
+      "3 credits for featuring job openings",
+      "Raizora support inclusion",
+      "Job featured for 2 weeks",
+      "Job published for 3 months",
+      "1-day approval process",
+      "Verified company status",
+    ],
+    unavailableFeatures: [],
+  },
+  {
+    name: "Premium",
+    price: "199",
+    description: "The ultimate package for maximum exposure and support.",
+    cardBgClass: "bg-white", // Keeping original card background color
+    descriptionColor: "text-zinc-500", // Keeping original description text color
+    features: [
+      "Unlimited job opening features",
+      "Raizora premium support",
+      "Jobs featured for 1 month",
+      "Jobs published for 6 months",
+      "Same-day approval process",
+      "Verified company status",
+    ],
+    unavailableFeatures: [],
+  },
+];
+---
+
+<section>
+  <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+    <div class="lg:mx-auto lg:text-center max-w-xl">
+      <span
+        class="text-purple-500 text-sm leading-6 px-4 py-2 relative bg-white ring-1 ring-slate-200 rounded-full"
+        >Find your next candidate</span
+      ><h2
+        class="text-slate-900 text-3xl font-normal tracking-tight font-display lg:text-4xl mt-8"
+      >
+        Job Board for Web Developers, <span class="md:block"
+          >UI/UX Designers, and Marketers</span
+        >
+      </h2>
+      <p class="text-slate-500 text-base mt-4">
+        Hire Wise is a handpicked job platform showcasing premier opportunities
+        <span class="md:block">
+          for developers, designers, and marketers within the tech industry.
+        </span>
+      </p>
+    </div>
+    <div
+      class="relative my-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-3 max-w-7xl lg:mx-auto xl:grid-cols-3"
+    >
+      {
+        pricingPlans.map((plan) => (
+          <section>
+            <div
+              class={` ${plan.cardBgClass}  flex flex-col  justify-between w-full h-full  rounded-2xl border border-slate-200 shadow-2xl shadow-slate-500/20`}
+            >
+              <div class="p-8 ">
+                <p
+                  class={`text-2xl text-black font-display ${plan.descriptionColor}`}
+                >
+                  {plan.name}
+                </p>
+                <div class="space-y-4 mt-8">
+                  <div class="flex gap-1 items-center ">
+                    <p
+                      class={` text-6xl font-semibold ${plan.descriptionColor}`}
+                    >
+                      ${plan.price}
+                      <span class="text-sm">/ credits</span>
+                    </p>
+                  </div>
+                  <p class={`text-sm text-pretty  ${plan.descriptionColor}`}>
+                    {plan.description}
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col p-8    gap-8">
+                <ul
+                  class={`text-xs flex flex-col gap-y-3 ${plan.descriptionColor}`}
+                >
+                  {plan.features.map((feature) => (
+                    <li class="inline-flex items-center gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-minus"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l14 0" />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                  {plan.unavailableFeatures.map((feature) => (
+                    <li class="inline-flex items-center gap-2 text-zinc-400 line-through">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-minus"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 12l14 0" />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  title={plan.name}
+                  aria-label="get started"
+                  class="inline-flex items-center w-full px-5 py-3 text-sm leading-4 text-purple-500 bg-white text-center rounded-full justify-between hover:bg-slate-50 duration-200 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-purple-500 border"
+                >
+                  Get started
+                </button>
+              </div>
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</section>

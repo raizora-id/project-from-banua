@@ -1,0 +1,60 @@
+---
+import PaidPostForm from "@/components/board/forms/PaidPostForm.astro";
+import FreePostForm from "@/components/board/forms/FreePostForm.astro";
+---
+
+<section>
+  <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+    <div class="max-w-xl">
+      <span
+        class="text-purple-500 text-sm leading-6 px-4 py-2 relative bg-white ring-1 ring-slate-200 rounded-full"
+        >Let's make you visible</span
+      ><h2
+        class="text-slate-900 text-balance font-display text-3xl font-normal tracking-tight lg:text-4xl mt-8"
+      >
+        Ready to post a job for your company?
+      </h2>
+      <p class="text-slate-500 text-base mt-4 text-balance">
+        Choose your job type below and fill all the job information. In case you
+        are choosing a Paid job, remember you need to buy a paid job credit
+        first.
+      </p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="mx-auto px-8 md:px-32 py-12 max-w-7xl">
+    <div x-data="{ tab: 'tab1' }">
+      <ul class="flex gap-6 text-sm text-slate-900 border-b border-slate-200">
+        <li class="-mb-px">
+          <a
+            @click.prevent="tab = 'tab1'"
+            href="#"
+            class="inline-block py-2 font-medium"
+            :class="{ ' bg-white text-purple-500 border-b-2 border-purple-500' : tab === 'tab1' }"
+          >
+            Post a free job offer</a
+          >
+        </li>
+        <li class="-mb-px">
+          <a
+            @click.prevent="tab = 'tab2'"
+            href="#"
+            class="inline-block py-2 font-medium"
+            :class="{ ' bg-white text-purple-500 border-b-2 border-purple-500' : tab === 'tab2' }"
+          >
+            Post a paid job offer</a
+          >
+        </li>
+      </ul>
+      <div class="py-4 pt-4 text-left">
+        <div x-show="tab==='tab1'" class="text-gray-500" style="display: none;">
+          <FreePostForm />
+        </div>
+        <div x-show="tab==='tab2'" class="text-gray-500" style="display: none;">
+          <PaidPostForm />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,83 @@
+{
+  "$ref": "#/definitions/openjobs",
+  "definitions": {
+    "openjobs": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "salary": {
+          "type": "string"
+        },
+        "pubDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "companyLogo": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "alt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "url",
+            "alt"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "page",
+        "company",
+        "position",
+        "location",
+        "department",
+        "level",
+        "type",
+        "salary",
+        "pubDate",
+        "companyLogo"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

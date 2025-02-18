@@ -1,0 +1,70 @@
+{
+  "$ref": "#/definitions/companies",
+  "definitions": {
+    "companies": {
+      "type": "object",
+      "properties": {
+        "link": {
+          "type": "string"
+        },
+        "page": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "salary": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "employees": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "companyLogo": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "alt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "url",
+            "alt"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "link",
+        "page",
+        "about",
+        "type",
+        "salary",
+        "company",
+        "position",
+        "employees",
+        "location",
+        "companyLogo"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
